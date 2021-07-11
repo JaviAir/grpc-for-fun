@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package myStockService;
+option go_package="./protoBuffs";
+
+service Stocks {
+    rpc GetStockBySymbol(StockSymbol) returns (theStock) {};
+    rpc GetStockbyName(StockName) returns (theStock) {};
+    rpc GetStockPrice(StockSymbol) returns (stream theStockPrice) {};
+}
+
+message StockSymbol {
+    string symbol = 1;
+}
+
+message StockName {
+    string name = 1;
+}
+
+message theStock {
+    string name = 1;
+    string symbol = 2;
+    int32 price = 3;
+}
+
+message theStockPrice {
+    int32 price = 1;
+}
